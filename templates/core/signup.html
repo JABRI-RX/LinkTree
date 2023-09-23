@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock title %}
+{% block content %}
+    <div class="w-1/2 my-6 mx-auto bg-gray-100 rounded-md">
+        {% if res %}
+            {% if  res.mode == 2 %}
+                {% comment %} <p class="py-2 px-4 text-center rounded-lg bg-green-500 text-white">Your account has been created successfully</p> {% endcomment %}
+                <script>
+                    
+                    toastr.success('Your account has been created successfully ')
+                </script>
+                {% else %}
+                {% if res.mode == 1 %}
+                    <script>
+                        toastr.error('Password Fields Aren\'t The Same ')
+                    </script>
+                    {% comment %} <p class="py-2 px-4 text-center rounded-lg bg-red-500 text-white">Password Fields Aren't The Same</p> {% endcomment %}
+                {% else %}
+                    <script>
+                       
+
+                        toastr.warning('Account Already Exists ')
+                    </script>
+                    {% comment %} <p class="py-2 px-4 text-center rounded-lg bg-yellow-500 text-white">Account Already Exists</p> {% endcomment %}
+                {% endif %}
+            
+            {% endif %}
+        {% endif %}
+        
+         
+
+        <h1 class="py-3 text-3xl text-center">Create Account Now For Free</h1>
+        <div class="flex justify-center">
+            <form method="POST" action="" class="py-3">
+                {% csrf_token %}
+                
+                <table class="mb-9">
+                    <tr class="mb-9">
+                        <td><label class="inline-block mb-2">Username :&nbsp;&nbsp;&nbsp; </label></td>
+                        <td class="w-[20rem]">
+                            <input type="text" name="username" class="w-full py-2 px-6 rounded-md border-2" required>
+                        </td>
+                    </tr>
+                    
+                    <tr class="mb-9">
+                        <td><label class="inline-block mb-2">Email :&nbsp;&nbsp;&nbsp;</label></td>
+                        <td class="w-[20rem]">
+                            <input type="text" name="email" class="w-full py-2 px-6 rounded-md border-2"required>
+                        </td>
+                    </tr> 
+                    <tr class="mb-9">
+                        <td><label class="inline-block mb-2">Password :&nbsp;&nbsp;&nbsp;</label></td>
+                        <td class="w-[20rem]">
+                            <input type="password" name="password" class="w-full py-2 px-6 rounded-md border-2" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <label class="inline-block mb-2">Repeat Password :&nbsp;&nbsp;&nbsp;</label></td>
+                        <td class="w-[20rem]">
+                            <input type="password" name="password1" class="w-full py-2 px-6 rounded-md border-2" required>
+                        </td>
+                    </tr>
+                    
+                </table>
+                <div class="flex justify-center">
+                    <button class="py-2 px-4 text-lg bg-green-500 hover:bg-green-700 rounded-md text-white">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

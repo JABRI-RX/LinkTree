@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Login {% endblock title %}
+{% block content %}
+    <div class="w-1/2 my-6 mx-auto bg-gray-100 rounded-md">
+        {% if mode == 1%}
+            <script>
+                toastr.error('The Email Or the Password Is Incorrect You Guess ')
+            </script>
+        {% endif %}
+        <h1 class="py-3 text-3xl text-center">Login</h1>
+        <div class="flex justify-center">
+            <form method="POST" action="" class="py-3">
+                {% csrf_token %}
+                {% if forms.error %}
+                <ul class="text-center bg-red-500 text-white py-3 px-4 rounded-lg">
+                    {{form.errors}}
+                </ul>
+                {% endif %}
+                <table class="mb-9">
+                    <tr class="mb-9">
+                        <td><label class="inline-block mb-2">email :&nbsp;&nbsp;&nbsp;</label></td>
+                        <td class="w-[20rem]">
+                            <input type="email" name="email" class="w-full py-2 px-6 rounded-md border-2" required>
+                        </td> 
+                    </tr>
+ 
+                    <tr class="mb-9">
+                        <td><label class="inline-block mb-2">Password :&nbsp;&nbsp;&nbsp;</label></td>
+                        <td class="w-[20rem]">
+                            <input type="password" name="password" class="w-full py-2 px-6 rounded-md border-2" required>
+                        </td>
+                    </tr>
+                    
+                </table>
+                <div class="flex justify-center">
+                    <button class="py-2 px-4 text-lg bg-green-500 hover:bg-red-700 rounded-md  text-white">Log  In</button>
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center">
+            <a href="{% url 'Core:forgotPassword' %}" class="text-center">Forgot Password ? </a>
+        </div>
+    </div>
+{% endblock content %}

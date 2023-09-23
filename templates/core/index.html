@@ -1,0 +1,27 @@
+ 
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock title %}
+{% load static %}
+{% block content %}
+    <section class=" bg-gradient-to-r from-green-500 to-green-600 ">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="flex justify-center items-center text-center w-[100%] h-[10rem]  bg-gradient-to-r   ">
+            
+            <p class="text-white text-3xl font-metro-bold drop-shadow-4xl">Welcome To The LinkFee app that allows users to create personalized <br>profile pages featuring links to their social media profiles, websites, and<br> online content. .<br>  </p>
+            
+        </div>
+        <div class="flex justify-center">
+            <a href="{% url 'Core:signup' %}" class="py-3 px-6  bg-white hover:bg-gray-200 rounded-md  text-green-500 text-2xl">Start Now</a>
+
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+    </section>
+ 
+{% endblock   %}  

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}For Password  {% endblock title %}
+{% block content %}
+<div class="w-1/2 my-6 mx-auto bg-gray-100 rounded-xl">
+    <h1 class="py-3 text-3xl text-center">Forgot Password</h1>
+    <div class="flex justify-center">
+        <form method="POST" action="" class="py-3">
+            {% csrf_token %}
+            <table class="mb-9">
+                <tr class="mb-9">
+                    <td><label class="inline-block mb-2">Email :&nbsp;&nbsp;&nbsp;</label></td>
+                    <td class="w-[20rem]">
+                        <input type="text" name="email" class="w-full py-2 px-6 rounded-xl border-2">
+                    </td>
+                </tr>
+ 
+            </table>
+            <p class="text-xs text-center"><b>Note :</b>That If the Account doesn't exist you have 10 seconds to <br>get the fuck out from here <p>
+                <br>
+            <div class="flex justify-center">
+                <button class="py-2 px-4  bg-green-500 hover:bg-green-700 rounded-xl  text-white">Send Password</button>
+            </div>
+        </form>
+    </div>
+     
+</div>
+{% endblock %}

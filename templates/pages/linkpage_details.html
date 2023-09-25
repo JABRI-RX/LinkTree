@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Your Pages {% endblock title %}
+{% block content %}
+<div class="flex flex-col items-center">
+    <h1 class="font-mono text-2xl text-center">Page Title: <span class="font-semibold">{{linkpage.title}}</span></h1>
+    <br>|
+    <h1 class="font-mono text-2xl text-center">Create At :<span class="font-semibold">{{linkpage.created_at}}</span></h1>
+</div>
+    <div class="mt-4 flex justify-center">
+        <table>
+            <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-5 py-2">
+                        Link Type
+                    </th>
+                    <th scope="col" class="px-5 py-2">
+                        Link 
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for link in links %}
+                <tr>
+                    
+                    <td scope="col" class="px-5 py-2">
+                        {{link.type}}
+                    </td>
+                    <td scope="col" class="px-5 py-2">
+                        <a  class="text-violet-400"href="{{link.url}}" target="_blank">{{link.url}}</a>
+        
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+                
+        </div>
+    </div>
+ 
+    <script>
+     
+    </script>
+{% endblock %}
+ 

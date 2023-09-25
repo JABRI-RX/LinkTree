@@ -2,7 +2,13 @@
 
 {% block title %}Creafte A Page {% endblock title %}
 {% block content %}
+
     <h1 class="font-semibold font-mono text-2xl text-center">Create Your First LinkTree Page</h1>
+    {% if  mode == 1%}
+        <script>
+            toastr.success("The Page Has Been Created ")
+        </script>
+    {% endif %}
     <form method="POST" action="">
         {% csrf_token %}
         <div class="mt-4 flex justify-center ">
@@ -12,7 +18,7 @@
                 <input  name="title" type="text" class="w-full  border border-slate-200 rounded-lg px-5 py-1 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Page Title Here  " required> 
                 <br>
                 <br>
- 
+
                 <div class="flex justify-between">
                     <select name="links[0][type]" class="py-2 px-3 cursor-pointer text-center text-white bg-blue-500 rounded-md">
                         <option value="Facebook">Facebook</option>
@@ -30,13 +36,13 @@
                 </div>
             
                 <!--We Are adding here-->
-                 
+
             </div>
             
         </div>
         <br>
         <div class="flex justify-center">
- 
+
             <button id="add_link" class="hidden lg:inline-block py-2 px-6 bg-green-600 hover:bg-green-700 text-sm text-white  rounded-md transition duration-200">Add Another Link</button>
         </div>
         <br>
@@ -45,6 +51,8 @@
         </div>
 
     </form>
+ 
+    
     <script>
         var add_link = document.getElementById("add_link")
         var list_links = document.getElementById("list_links")

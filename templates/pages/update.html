@@ -1,6 +1,100 @@
 {% extends 'base.html' %}
 
-{% block title %}Update My Page {% endblock title %}
+{% block title %}Modify Your Page {% endblock title %}
 {% block content %}
-    <h1>Lady Here me tonight</h1>
+
+    <h1 class="font-semibold font-mono text-2xl text-center">Modify Your LinkTree Page</h1>
+ 
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="mt-4 flex justify-center ">
+                
+                <div  id="list_links" class="w-[28em]">
+        
+                    <input  value="{{title}}" name="title" type="text" class="w-full  border border-slate-200 rounded-lg px-5 py-1 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="Page Title Here  " required> 
+                    <br>
+                    <br>
+                    {% for link in links %}
+                      
+                        <div class="flex justify-between mt-3">
+                            <select id="type" name="links[0][type]" class="py-2 px-3 cursor-pointer text-center text-white bg-blue-500 rounded-md">
+                                <option value="Facebook">Facebook</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Whatsapp">Whatsapp</option>
+                                <option value="Youtube">Youtube</option>
+                                <option value="Linkedin">Linkedin</option>
+                                <option value="Github">Github</option>
+                                <option value="Gmail">Gmail</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <input  name="links[0][url]" type="text" class="w-full  border border-slate-200 rounded-lg px-5 py-1 focus:outline-none focus:border-slate-500 hover:shadow" value="{{link.url}}" placeholder="The Url" required> 
+                            <button class="text-center   py-2 px-6 bg-red-600 hover:bg-red-700 text-sm text-white  rounded-md transition duration-200" >X</button>
+                        </div>
+                        
+                    {% endfor %}
+                   
+                
+                    <!--We Are adding here-->
+
+                </div>
+                
+            </div>
+             <br>
+            <div class="flex justify-center">
+
+                <button id="add_link" class="hidden lg:inline-block py-2 px-6 bg-green-600 hover:bg-green-700 text-sm text-white  rounded-md transition duration-200">Add Another Link</button>
+            </div>
+            <br>
+            <div class="flex justify-center">
+                <button class="text-center   py-2 px-6 bg-red-600 hover:bg-red-700 text-sm text-white  rounded-md transition duration-200" >Finsish</button>
+            </div>
+
+        </form>
+ 
+ 
+    <script>
+        window.addEventListener("load",()=>{
+            selects = document.querySelectorAll("#type")
+          
+           {% for  link in links %}
+                selects[{{ forloop.counter0 }}].value = "{{link.type}}"
+           
+           {% endfor %}
+             
+    
+            var add_link = document.getElementById("add_link")
+            var list_links = document.getElementById("list_links")
+            var link_list_counter= 0
+            add_link.addEventListener("click",(e)=>{
+                e.preventDefault()
+
+                var newRow = document.createElement("div")
+                link_list_counter++;
+                newRow.className = "py-1 flex justify-between"
+                newRow.innerHTML = '<select name="'+`links[${link_list_counter}][type]`+'" class="py-2 px-3 cursor-pointer text-center text-white bg-blue-500 rounded-md">\
+                                <option value="Facebook">Facebook</option>\
+                                <option value="Instagram">Instagram</option>\
+                                <option value="Whatsapp">Whatsapp</option>\
+                                <option value="Youtube">Youtube</option>\
+                                <option value="Linkedin">Linkedin</option>\
+                                <option value="Github">Github</option>\
+                                <option value="Gmail">Gmail</option>\
+                                <option value="Others">Others</option>\
+                            </select>\
+                            <input name="'+`links[${link_list_counter}][url]`+'" type="text" class="w-full  border border-slate-200 rounded-lg px-5 py-1 focus:outline-none focus:border-slate-500 hover:shadow" placeholder="The Url" required> \
+                            <button class="remove-button text-center py-2 px-6 bg-red-600 hover:bg-red-700 text-sm text-white rounded-md transition duration-200">X</button>';
+                    
+                list_links.appendChild(newRow)
+
+                list_links.addEventListener("click",(e)=>{
+                    if(e.target && e.target.classList.contains("remove-button")){
+                        e.target.parentNode.remove()
+                    }
+                })
+            })
+        })
+        
+         
+    </script>
 {% endblock %}
+ 
